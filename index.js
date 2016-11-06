@@ -1,15 +1,14 @@
 var express = require("express");
 var app = express();
+var path = require("path");
 var port = 3700;
 
-app.set('views', __dirname + '/tpl');
-app.set('view engine', "jade");
-app.engine('jade', require('jade').__express);
 
 app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname+'/node_modules'));
 
 app.get("/", function(req, res){
-    res.render("first");
+    res.sendFile(path.join(__dirname + '/tpl/first.html'));
 });
 
 var io = require('socket.io').listen(app.listen(port));
