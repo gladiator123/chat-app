@@ -11,25 +11,26 @@
      <script src="/jquery/dist/jquery.min.js"></script>
       <script src="/angular-aria/angular-aria.min.js"></script>
     <script src="firstController.js"></script>
-    <link rel="stylesheet" type="text/css" href="first.css">
+    <link rel="stylesheet" type="text/css" href="/first.css">
     <link rel="stylesheet" type="text/css" href="/angular-material/angular-material.min.css">
   </head>
   
   <body  ng-controller="AppCtrl"  ng-app="MyApp" >
-      <md-toolbar class="md-theme-light" >
+  <div class="conversation" ng-show="clicked">
+      <md-toolbar class="md-theme-light border" >
         <h2 class="md-toolbar-tools">
           <span>My chat app</span>
         </h2>
       </md-toolbar>
-      <h1>{{firstmsg}}</h1>
+      
       <div id="chat-box" style="overflow:auto;height:400px;">
-      <md-content>
-        <md-list >
-          <md-list-item id="{{$index}}" data-ng-repeat="r in messages" class="md-3-line" >
+      <md-content style="background-color: white;">
+        <md-list class="md-dense">
+          <md-list-item id="{{$index}}" data-ng-repeat="r in messages" class="md-3-line md-long-text" >
             <img ng-src="" class="md-avatar" alt="">
             <div class="md-list-item-text">
-              <h3>{{r.text}}</h3>
               <h4>{{r.user}}</h4>
+              <p style="width: 200px;display: block; word-break: break-all;word-wrap: break-word;">{{r.text}}</p>
             </div>
             <md-divider md-inset="" ng-if="!$last"></md-divider>
           </md-list-item>
@@ -38,20 +39,18 @@
     </div>
       <md-input-container class="md-block">
           <label>Type your message here</label>
-          <textarea ng-model="message" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+          <textarea ng-model="message"  md-select-on-focus=""></textarea>
         </md-input-container>
 
         <md-button md-no-ink="" ng-click="sendMessage()" class="md-primary">Send</md-button>
 
-          <div class="clr">
-        <h3>Change your name</h3>
-        <p>Your current user name is {{name}}</p>
-          <form ng-submit="changeName()">
-            <input ng-model="newName"/>
-            <input type="submit" value="Change Name"/>
-          </form>
+          
 </div>
-
+  <div  class="bottom">
+    <md-button class="md-fab md-primary md-hue-2 " aria-label="Profile" ng-click="clicked=!clicked">
+      <md-icon  md-svg-src="icon/messenger.svg"></md-icon>
+    </md-button>
+  </div>
   </body>
 
 

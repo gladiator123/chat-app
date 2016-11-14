@@ -2,6 +2,7 @@ angular.module('MyApp',['ngMaterial','btford.socket-io'])
 
 .controller('AppCtrl', function($scope,socket,$location, $anchorScroll,$interval) {
 	
+	$scope.clicked=false;
     $scope.messages = [];
     /*$scope.$watchCollection($scope.messages, function(newm,oldm) {
         console.log('hey, myVar has changed!');

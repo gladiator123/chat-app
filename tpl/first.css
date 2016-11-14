@@ -1,1 +1,21 @@
-first.css
+.conversation{
+	position:absolute;
+	width: 350px;
+	bottom:70px;
+	right:80px;
+    border-radius: 12px 12px 12px 12px; 
+	background-color: white;
+	border: solid rgb(57,73,171);
+    border-width: 1px 1px;
+}
+.bottom{
+	position:absolute;
+	bottom:5px;
+	right:5px;
+}
+.border{
+	border-radius: 12px 12px 0px 0px; 
+}
+md-list-item, md-list-item .md-list-item-inner, md-checkbox {
+    min-height: 100%;
+}
