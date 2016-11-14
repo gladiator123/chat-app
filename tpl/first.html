@@ -2,44 +2,59 @@
 <html>
   <head>
     <title>Real time web chat</title>
-    <script src="/socket.io/socket.io.js"></script>
+
     <script src="/angular/angular.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/angular-socket-io/socket.min.js"></script>
     <script src="/angular-material/angular-material.min.js"></script>
      <script src="/angular-animate/angular-animate.min.js"></script>
+     <script src="/jquery/dist/jquery.min.js"></script>
       <script src="/angular-aria/angular-aria.min.js"></script>
     <script src="firstController.js"></script>
     <link rel="stylesheet" type="text/css" href="first.css">
     <link rel="stylesheet" type="text/css" href="/angular-material/angular-material.min.css">
   </head>
   
-  <body  ng-controller="AppCtrl"  ng-app="MyApp">
-      <md-toolbar class="md-theme-light">
+  <body  ng-controller="AppCtrl"  ng-app="MyApp" >
+      <md-toolbar class="md-theme-light" >
         <h2 class="md-toolbar-tools">
           <span>My chat app</span>
         </h2>
       </md-toolbar>
-
+      <h1>{{firstmsg}}</h1>
+      <div id="chat-box" style="overflow:auto;height:400px;">
       <md-content>
-        <md-list>
-          <md-list-item data-ng-repeat="r in messages" class="md-3-line" >
+        <md-list >
+          <md-list-item id="{{$index}}" data-ng-repeat="r in messages" class="md-3-line" >
             <img ng-src="" class="md-avatar" alt="">
             <div class="md-list-item-text">
-              <h3>{{r.message}}</h3>
-              <h4>{{r.username}}</h4>
+              <h3>{{r.text}}</h3>
+              <h4>{{r.user}}</h4>
             </div>
             <md-divider md-inset="" ng-if="!$last"></md-divider>
           </md-list-item>
         </md-list>
       </md-content>
-
+    </div>
       <md-input-container class="md-block">
           <label>Type your message here</label>
           <textarea ng-model="message" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
         </md-input-container>
 
-        <md-button md-no-ink="" ng-click="send()" class="md-primary">Send</md-button>
+        <md-button md-no-ink="" ng-click="sendMessage()" class="md-primary">Send</md-button>
+
+          <div class="clr">
+        <h3>Change your name</h3>
+        <p>Your current user name is {{name}}</p>
+          <form ng-submit="changeName()">
+            <input ng-model="newName"/>
+            <input type="submit" value="Change Name"/>
+          </form>
+</div>
 
   </body>
+
+
 
 </html>
 

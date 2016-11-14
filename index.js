@@ -1,22 +1,29 @@
-var express = require("express");
-var app = express();
+var express = require("express"),
+	routes = require('./routes'),
+  	socket = require('./routes/socket.js');
 var path = require("path");
-var port = 3700;
 
+var app = module.exports = express.createServer();
+var io = require('socket.io').listen(app);
+
+app.configure(function(){
+  app.set('views', __dirname + '/tpl');
+  app.set('view engine', 'jade');
+  app.set('view options', {
+    layout: false
+  });
+});
 
 app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/node_modules'));
+app.use(express.static(__dirname+'/tpl'));
+app.get('*', routes.index);
 
-app.get("/", function(req, res){
-    res.sendFile(path.join(__dirname + '/tpl/first.html'));
-});
+var io = require('socket.io').listen(app);
 
-var io = require('socket.io').listen(app.listen(port));
-console.log("listening on port "+port);
 
-io.sockets.on('connection', function (socket) {
-    socket.emit('message', { message: 'welcome to the chat' });
-    socket.on('send', function (data) {
-        io.sockets.emit('message', data);
-    });
+io.sockets.on('connection', socket);
+
+app.listen(3000, function(){
+  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

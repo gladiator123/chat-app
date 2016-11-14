@@ -7,8 +7,10 @@
     "angular-animate": "^1.5.8",
     "angular-aria": "^1.5.8",
     "angular-material": "^1.1.1",
-    "express": "latest",
+    "angular-socket-io": "^0.7.0",
+    "express": "2.5.10",
     "jade": "latest",
+    "jquery": "^3.1.1",
     "path": "^0.12.7",
     "socket.io": "latest"
   },
